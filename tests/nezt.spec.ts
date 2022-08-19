@@ -5,7 +5,7 @@ test('LOE TEST', async ({ }) => {
   // open browser
 
   const browser = await chromium.launch({
-    headless: false
+    headless: true
   });
   const context = await browser.newContext();
   // Open new page
