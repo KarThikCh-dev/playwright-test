@@ -1,0 +1,46 @@
+import { test, expect } from '@playwright/test';
+import { chromium } from '@playwright/test';
+
+test('LOE TEST', async ({page}) => {
+  // open browser
+
+  const browser = await chromium.launch({
+    headless: false
+  });
+  const context = await browser.newContext();
+  // Open new page
+  // const page = await context.newPage();
+
+  await page.goto('https://questionnaire.lifeofemployee.com/');
+
+
+  // Go to https://questionnaire.lifeofemployee.com/auth
+  await page.goto('https://questionnaire.lifeofemployee.com/auth');
+  // Click #mat-input-0
+  await page.locator('#mat-input-0').click();
+  // Fill [placeholder="Email"]
+  await page.locator('[placeholder="Email"]').fill('praneeth@lifeofgirl.com');
+  // Press Tab
+  await page.locator('[placeholder="Email"]').press('Tab');
+  // Fill [placeholder="Password"]
+  await page.locator('[placeholder="Password"]').fill('log123');
+  // Click #mat-tab-content-0-0 button:has-text("Sign In")
+  await page.locator('#mat-tab-content-0-0 button:has-text("Sign In")').click();
+  await page.waitForURL('https://questionnaire.lifeofemployee.com/home');
+  // Click text=Account
+  await page.locator('text=Account').click();
+  await page.waitForURL('https://questionnaire.lifeofemployee.com/anonymous/maya');
+
+  await context.grantPermissions(['geolocation']);
+
+
+
+  await context.setGeolocation({latitude: 59.95, longitude: 30.31667});
+
+
+    
+  // wait for 5 seconds
+
+
+
+});
