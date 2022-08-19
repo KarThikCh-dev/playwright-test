@@ -36,11 +36,18 @@ test('LOE TEST', async ({ }) => {
   await context.setGeolocation({ latitude: 59.95, longitude: 30.31667 });
 
   // Click button[name="punch_in"]
-  await page.locator('button[name="punch_in"]').click();
+  // await page.locator('button[name="punch_in"]').click();
+  let selector = 'button[name="punch_in"]';
+
+  // does not work
+  await page.click(selector); 
+
+  // does work
+  await page.evaluate((selector) => document.querySelector(selector).click(), selector); 
   // await page.locator('button:has-text("punch_in")').click();
 
 
-  await expect(page).toHaveURL('https://hurrey.teamnest.com/core/employee/123');
+  await expect(page).toHaveURL('https://hurrey.teamnest.com/core/employee/25');
 
 
 
