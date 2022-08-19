@@ -3,6 +3,8 @@ import { chromium } from '@playwright/test';
 
 test('LOE TEST', async ({ }) => {
   // open browser
+  test.setTimeout(6000000000);
+
 
   const browser = await chromium.launch({
     headless: true
